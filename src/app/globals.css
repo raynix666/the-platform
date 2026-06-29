@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+/* Dark mode variant: targets elements when .dark class is on html/ancestor */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: var(--font-cairo), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono);
+}
+
+:root {
+  --paper: #FAF8F3;
+  --ink: #1C2430;
+  --muted: #6B7280;
+  --line: rgba(28,36,48,0.10);
+  --teal: #0E6F66;
+  --teal-deep: #0A5650;
+  --teal-tint: #E4F2EF;
+  --coral: #D85B49;
+  --coral-tint: #FBEAE6;
+  --sky: #3A7CA5;
+  --sky-tint: #E8F0F6;
+  --amber: #D9912F;
+  --amber-tint: #FBEEDC;
+  --card: #FFFFFF;
+  color-scheme: light;
+}
+
+.dark {
+  --paper: #0f172a;
+  --ink: #f1f5f9;
+  --card: #1e293b;
+  color-scheme: dark;
+}
+
+/* تطبيق الثيم الداكن على الـ body مباشرة */
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: 'IBM Plex Sans Arabic', 'Tajawal', sans-serif;
+  min-height: 100vh;
+  position: relative;
+  background-color: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+
+/* تحسينات عامة للنصوص لزيادة الوضوح والتباين */
+h1, h2, h3, h4, h5, h6 {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.text-white {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  font-weight: 600;
+}
+
+.text-slate-100, .text-slate-200 {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  font-weight: 500;
+}
+
+/* رفع درجة وضوح الألوان الباهتة (Slate-400 / 500) لتعزيز القراءة على الخلفيات شبه الشفافة */
+.text-slate-400 {
+  color: #cbd5e1 !important; /* لون أقرب لـ slate-300 */
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.text-slate-500 {
+  color: #94a3b8 !important; /* لون أقرب لـ slate-400 */
+  font-weight: 500;
+}
+
+/* تحسين أحجام الخطوط الصغيرة والمسافات */
+.text-xs {
+  font-size: 0.8125rem !important; /* تكبير الخط الصغير قليلاً */
+  line-height: 1.6 !important;
+}
+
+.text-sm {
+  font-size: 0.925rem !important;
+  line-height: 1.6 !important;
+}
+
+/* تحسين تباين النصوص داخل الجداول والبطاقات */
+td, th, p, span {
+  text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+
+/* تخصيص مظهر شريط التمرير */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #14b8a6;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0d9488;
+}
+
+/* أنيميشن الظهور التدريجي */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out forwards;
+}

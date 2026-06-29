@@ -1,0 +1,30 @@
+npm verbose cli C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js
+npm info using npm@11.13.0
+npm info using node@v24.17.0
+npm verbose title npm run dev
+npm verbose argv "run" "dev" "--loglevel" "verbose"
+npm verbose logfile logs-max:10 dir:C:\Users\user\AppData\Local\npm-cache\_logs\2026-06-23T10_58_29_387Z-
+npm verbose logfile C:\Users\user\AppData\Local\npm-cache\_logs\2026-06-23T10_58_29_387Z-debug-0.log
+
+> enjaz-platform@0.1.0 dev
+> next dev --turbopack
+
+npm verbose stack Error: spawn C:\Users\user\AppData\Local\Android\Sdk ENOENT
+npm verbose stack     at ChildProcess._handle.onexit (node:internal/child_process:287:19)
+npm verbose stack     at onErrorNT (node:internal/child_process:508:16)
+npm verbose stack     at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+npm verbose pkgid enjaz-platform@0.1.0
+npm error code ENOENT
+npm error syscall spawn C:\Users\user\AppData\Local\Android\Sdk
+npm error path C:\Users\user\Desktop\enjaz-platform
+npm error errno -4058
+npm error enoent spawn C:\Users\user\AppData\Local\Android\Sdk ENOENT
+npm error enoent This is related to npm not being able to find a file.
+npm error enoent
+npm verbose cwd C:\Users\user\Desktop\enjaz-platform
+npm verbose os Windows_NT 10.0.26200
+npm verbose node v24.17.0
+npm verbose npm  v11.13.0
+npm verbose exit -4058
+npm verbose code -4058
+npm error A complete log of this run can be found in: C:\Users\user\AppData\Local\npm-cache\_logs\2026-06-23T10_58_29_387Z-debug-0.log

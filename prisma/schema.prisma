@@ -1,0 +1,88 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Member {
+  id             String               @id
+  fullName       String
+  age            Int
+  gender         String
+  nationality    String
+  phone          String
+  address        String
+  degree         String
+  specialization String
+  nationalId     String
+  idImage        String?              // مسار أو صورة الهوية (Base64 أو Cloudinary)
+  isBlacklisted  Boolean              @default(false)
+  createdAt      DateTime             @default(now())
+  updatedAt      DateTime             @updatedAt
+  visits         Visit[]
+  activities     Activity[]
+  registrations  CourseRegistration[]
+}
+
+model Visit {
+  id        String   @id @default(uuid())
+  memberId  String
+  member    Member   @relation(fields: [memberId], references: [id], onDelete: Cascade)
+  purpose   String
+  details   String?
+  date      DateTime @default(now())
+}
+
+model Activity {
+  id          String   @id @default(uuid())
+  memberId    String
+  member      Member   @relation(fields: [memberId], references: [id], onDelete: Cascade)
+  type        String   // زيارة، دورة، ورشة عمل، دراسة
+  title       String
+  description String?
+  date        DateTime @default(now())
+  time        String?
+  location    String?
+}
+
+model Course {
+  id            String               @id @default(uuid())
+  title         String
+  topics        String?
+  startDate     DateTime
+  startTime     String?
+  endTime       String?
+  trainerName   String?
+  ageFrom       Int?
+  ageTo         Int?
+  genderTarget  String?              // ذكر، أنثى، الجميع
+  maxSeats      Int                  @default(50)
+  createdAt     DateTime             @default(now())
+  registrations CourseRegistration[]
+}
+
+model CourseRegistration {
+  id         String   @id @default(uuid())
+  courseId   String
+  course     Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  memberId   String
+  member     Member   @relation(fields: [memberId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+
+  @@unique([courseId, memberId])
+}
+
+model Employee {
+  id                 String   @id @default(uuid())
+  fullName           String
+  employeeCode       String   @unique
+  role               String   @default("EMPLOYEE") // "ADMIN" أو "EMPLOYEE"
+  canExportWorkshops Boolean  @default(false)
+  canExportVisitors  Boolean  @default(false)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
